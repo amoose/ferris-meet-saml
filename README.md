@@ -1,4 +1,4 @@
-# [Ferris](https://github.com/18f/save-ferris), Meet [SAML](https://github.com/sportngin/saml_idp)
+# Ferris, Meet SAML
 
 Internal ICAM SAML IDP
 
