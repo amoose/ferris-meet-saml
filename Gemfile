@@ -23,7 +23,7 @@ gem "simple_form"
 gem "title"
 gem "uglifier"
 gem "unicorn"
-
+gem 'slim'
 gem 'saml_idp', github: 'amoose/saml_idp'
 
 group :development do
