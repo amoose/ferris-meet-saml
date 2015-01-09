@@ -14,7 +14,6 @@ gem "jquery-rails"
 gem "neat", "~> 1.5.1"
 gem "newrelic_rpm"
 gem "normalize-rails", "~> 3.0.0"
-gem "pg"
 gem "rack-timeout"
 gem "rails", "4.1.8"
 gem "recipient_interceptor"
@@ -26,7 +25,9 @@ gem "unicorn"
 gem 'slim'
 gem 'saml_idp', github: 'amoose/saml_idp'
 
+
 group :development do
+  gem 'sqlite3'
   gem "bundler-audit"
   gem "spring"
   gem "spring-commands-rspec"
@@ -53,5 +54,6 @@ group :test do
 end
 
 group :staging, :production do
+  gem "pg"
   gem 'rails_12factor'
 end

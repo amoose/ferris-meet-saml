@@ -228,6 +228,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10)
     systemu (2.6.4)
     temple (0.7.4)
     term-ansicolor (1.3.0)
@@ -299,6 +300,7 @@ DEPENDENCIES
   slim
   spring
   spring-commands-rspec
+  sqlite3
   timecop
   title
   uglifier

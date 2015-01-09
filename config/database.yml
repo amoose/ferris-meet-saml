@@ -1,12 +1,15 @@
-development: &default
-  adapter: postgresql
-  database: ferris-meet-saml_development
-  encoding: utf8
-  host: localhost
-  min_messages: warning
-  pool: 2
+# development:
+#   <<: *defaults
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
   timeout: 5000
 
+# test:
+#   <<: *defaults
 test:
-  <<: *default
-  database: ferris-meet-saml_test
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
