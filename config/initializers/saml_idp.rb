@@ -35,8 +35,8 @@ SamlIdp.configure do |config|
   # config.algorithm = :sha256
 
 
-  config.signature_alg = 'rsa-sha256'
-  config.digest_alg = 'sha256'
+  # config.signature_alg = 'rsa-sha256'
+  # config.digest_alg = 'sha256'
   
   # Principal is passed in when you `encode_response`
   #
@@ -89,10 +89,10 @@ SamlIdp.configure do |config|
     "http://localhost:3000/users/auth/saml" => {
       acs_url: "http://localhost:3000/users/auth/saml",
       metadata_url: "http://localhost:3000/users/auth/saml/metadata",
-      cert: Rails.application.secrets.saml_cert,
-      block_encryption: 'aes256-cbc',
-      key_transport: 'rsa-oaep-mgf1p',
-      fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
+      cert: Rails.application.secrets.saml_cert # ,
+      # block_encryption: 'aes256-cbc',
+      # key_transport: 'rsa-oaep-mgf1p',
+      # fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
     },
   }
 

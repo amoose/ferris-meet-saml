@@ -23,7 +23,7 @@ gem "title"
 gem "uglifier"
 gem "unicorn"
 gem 'slim'
-gem 'saml_idp', github: 'amoose/saml_idp'
+gem 'saml_idp', github: 'amoose/saml_idp', branch: 'feature/ruby-saml-081'
 
 
 group :development do
