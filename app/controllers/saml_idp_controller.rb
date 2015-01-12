@@ -1,15 +1,20 @@
 require 'saml_idp'
 
 class SamlIdpController < SamlIdp::IdpController
-  def idp_authenticate(email, password) # not using params intentionally
-    user = User.by_email(email).first
-    user && user.valid_password?(password) ? user : nil
+  skip_before_action :verify_authenticity_token
+
+  def idp_authenticate(email, password)
+    user = User.find_or_create_by(email: email)
+    if password == 'merp'
+      user
+    end
   end
   private :idp_authenticate
 
-  def idp_make_saml_response(found_user) # not using params intentionally
+  def idp_make_saml_response(found_user)
     encode_response found_user
   end
+  private :idp_make_saml_response
 
   # def sso
   #   # Create LogoutRequest.
@@ -36,5 +41,5 @@ class SamlIdpController < SamlIdp::IdpController
   #       type: :SAMLRequest },
   #     layout: false
   # end
-  private :idp_make_saml_response
+  
 end

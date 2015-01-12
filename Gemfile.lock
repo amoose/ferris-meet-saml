@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amoose/saml_idp.git
-  revision: ede3673337dafae2c53cf3bc0007e4204283826d
+  revision: 94ee1cb91ad78df7526b189741675e7913f9a3e4
   branch: feature/ruby-saml-081
   specs:
     saml_idp (0.1.1)
@@ -9,6 +9,15 @@ GIT
       httparty
       nokogiri
       uuid
+
+GIT
+  remote: git://github.com/rails/activerecord-session_store.git
+  revision: e879bf087eb684452aaddb734efa20b95588b141
+  specs:
+    activerecord-session_store (0.1.0)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
 
 GEM
   remote: https://rubygems.org/
@@ -138,7 +147,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.5.0)
+    minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     neat (1.5.1)
@@ -263,6 +272,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-session_store!
   airbrake
   awesome_print
   bourbon (~> 3.2.1)

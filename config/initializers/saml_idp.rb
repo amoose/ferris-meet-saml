@@ -14,7 +14,7 @@ SamlIdp.configure do |config|
   config.entity_id                = 'uscisprodidp'
 
   # config.password = "secret_key_password"
-  # config.algorithm = :sha256
+  config.algorithm = :sha256
   # config.organization_name = "Your Organization"
   # config.organization_url = "http://example.com"
   config.base_saml_location = "#{base}/saml"
@@ -40,11 +40,10 @@ SamlIdp.configure do |config|
   
   # Principal is passed in when you `encode_response`
   #
-  # config.name_id_formats # =>
-  #   {                         # All 2.0
-  #     email_address: -> (principal) { principal.email_address },
+  # config.name_id_formats = {
+  #     email_address: -> (principal) { principal.email },
   #     transient: -> (principal) { principal.id },
-  #     persistent: -> (p) { p.id },
+  #     persistent: -> (p) { p.id }
   #   }
   #   OR
   #
@@ -77,6 +76,11 @@ SamlIdp.configure do |config|
   #     getter: :last_name,
   #   },
   # }
+  config.attributes = {
+    :emailAddress => {
+      :getter => :email
+    }
+  }
   ## EXAMPLE ##
 
   # config.technical_contact.company = "Example"
@@ -87,7 +91,7 @@ SamlIdp.configure do |config|
 
   service_providers = {
     "http://localhost:3000/users/auth/saml" => {
-      acs_url: "http://localhost:3000/users/auth/saml",
+      acs_url: "http://localhost:3000/users/auth/saml/callback",
       metadata_url: "http://localhost:3000/users/auth/saml/metadata",
       cert: Rails.application.secrets.saml_cert # ,
       # block_encryption: 'aes256-cbc',
