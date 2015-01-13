@@ -77,9 +77,13 @@ SamlIdp.configure do |config|
   #   },
   # }
   config.attributes = {
-    :emailAddress => {
+    :email => {
       :getter => :email
+    },
+    :uuid => {
+      :getter => :uuid
     }
+
   }
   ## EXAMPLE ##
 
