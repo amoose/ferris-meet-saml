@@ -25,9 +25,9 @@ gem 'thin'
 gem 'slim'
 gem 'saml_idp', github: 'amoose/saml_idp', branch: 'feature/ruby-saml-081'
 gem 'bcrypt-ruby', :require => 'bcrypt' 
+gem 'sqlite3'
 
 group :development do
-  gem 'sqlite3'
   gem "bundler-audit"
   gem "spring"
   gem "spring-commands-rspec"
@@ -56,6 +56,5 @@ group :test do
 end
 
 group :staging, :production do
-  gem "pg"
   gem 'rails_12factor'
 end
