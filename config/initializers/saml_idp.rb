@@ -77,11 +77,20 @@ SamlIdp.configure do |config|
   #   },
   # }
   config.attributes = {
-    :email => {
+    :emailAddress => {
       :getter => :email
     },
-    :uuid => {
+    :cisUUID => {
       :getter => :uuid
+    },
+    :groups => {
+      :getter => :groups
+    },
+    :sn => {
+      :getter => :first_name
+    },
+    :givenName => {
+      :getter => :last_name
     }
 
   }
@@ -102,6 +111,14 @@ SamlIdp.configure do |config|
       # key_transport: 'rsa-oaep-mgf1p',
       # fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
     },
+    "https://save-ferris-dev.18f.us/users/auth/saml" => {
+      acs_url: "https://save-ferris-dev.18f.us/users/auth/saml/callback",
+      metadata_url: "https://save-ferris-dev.18f.us/users/auth/saml/metadata",
+      cert: Rails.application.secrets.saml_cert # ,
+      # block_encryption: 'aes256-cbc',
+      # key_transport: 'rsa-oaep-mgf1p',
+      # fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
+    }
   }
 
   # `identifier` is the entity_id or issuer of the Service Provider,

@@ -21,10 +21,9 @@ gem "sass-rails", "~> 4.0.3"
 gem "simple_form"
 gem "title"
 gem "uglifier"
-gem "unicorn"
+gem 'thin'
 gem 'slim'
 gem 'saml_idp', github: 'amoose/saml_idp', branch: 'feature/ruby-saml-081'
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 group :development do
   gem 'sqlite3'
