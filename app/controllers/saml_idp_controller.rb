@@ -4,12 +4,15 @@ class SamlIdpController < SamlIdp::IdpController
   skip_before_action :verify_authenticity_token
 
   def idp_authenticate(email, password)
-    user = User.find_or_create_by(email: email)
-    if password == 'merp'
-      user
+    if signin_params[:sign_up]
+      user = User.new(signin_params.except(:sign_up))
+      return user if user.save
+    elsif user = User.where(email: email).first
+      return user if user.match_password( password )
     end
   end
   private :idp_authenticate
+
 
   def idp_make_saml_response(found_user)
     encode_response found_user
@@ -41,5 +44,7 @@ class SamlIdpController < SamlIdp::IdpController
   #       type: :SAMLRequest },
   #     layout: false
   # end
-  
+  def signin_params
+    params.permit(:email, :password, :password_confirmation, :groups, :first_name, :last_name, :sign_up)
+  end
 end

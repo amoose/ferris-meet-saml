@@ -1,0 +1,76 @@
+= render 'layouts/header'
+.container
+  section
+    h1 Enterprise ICAM IdP
+    br
+    br
+
+  - if @saml_idp_fail_msg
+    section
+      div id="saml_idp_fail_msg" class="flash error"
+        = @saml_idp_fail_msg
+      br
+      - if params[:sign_up]
+        p Password must be great than 6 characters in length.
+
+  section style="width: 40%; float: left;"
+
+    h3 Sign in
+
+    = form_tag do
+      = hidden_field_tag("SAMLRequest", params[:SAMLRequest])
+      = hidden_field_tag("RelayState", params[:RelayState])
+
+      p 
+        = label_tag :email
+        = email_field_tag :email, params[:email], :autocapitalize => "off", :autocorrect => "off", :autofocus => "autofocus", :spellcheck => "false", :size => 30, :class => "email_pwd txt"
+
+      p
+        = label_tag :password
+        = password_field_tag :password, params[:password], :autocapitalize => "off", :autocorrect => "off", :spellcheck => "false", :size => 30, :class => "email_pwd txt"
+
+      
+
+      p
+        = submit_tag "Sign In", :class => "button big blueish"
+
+  section style="width: 40%; float: right;"
+    h3 Sign Up
+
+    = form_tag do
+      = hidden_field_tag("SAMLRequest", params[:SAMLRequest])
+      = hidden_field_tag("RelayState", params[:RelayState])
+      = hidden_field_tag("sign_up", true)
+
+      p 
+        = label_tag :email
+        = email_field_tag :email, params[:email], :autocapitalize => "off", :autocorrect => "off", :autofocus => "autofocus", :spellcheck => "false", :size => 30, :class => "email_pwd txt"
+
+      p
+        = label_tag :password
+        = password_field_tag :password, nil, :autocapitalize => "off", :autocorrect => "off", :spellcheck => "false", :size => 30, :class => "email_pwd txt"
+      p
+        = label_tag :password_confirmation
+        = password_field_tag :password_confirmation, nil, :autocapitalize => "off", :autocorrect => "off", :spellcheck => "false", :size => 30, :class => "email_pwd txt"
+
+      p Include the following optional attributes with your authentication request:
+
+      p
+        = label_tag :first_name
+        = text_field_tag :first_name, params[:first_name]
+
+      p
+        = label_tag :last_name
+        = text_field_tag :last_name, params[:last_name]
+
+      p
+        = label_tag :groups
+        = text_field_tag :groups, params[:groups]
+
+      p
+        = submit_tag "Sign Up", :class => "button big blueish"
+  
+  br clear="both"
+  br clear="both"
+
+= render 'layouts/footer'

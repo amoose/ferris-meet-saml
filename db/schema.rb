@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115184024) do
+ActiveRecord::Schema.define(version: 20150115201633) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 20150115184024) do
     t.string   "groups"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "salt"
+    t.string   "encrypted_password"
+    t.string   "password_confirmation"
   end
 
 end

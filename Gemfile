@@ -24,12 +24,15 @@ gem "uglifier"
 gem 'thin'
 gem 'slim'
 gem 'saml_idp', github: 'amoose/saml_idp', branch: 'feature/ruby-saml-081'
+gem 'bcrypt-ruby', :require => 'bcrypt' 
 
 group :development do
   gem 'sqlite3'
   gem "bundler-audit"
   gem "spring"
   gem "spring-commands-rspec"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do

@@ -5,3 +5,8 @@
 @import 'base/grid-settings';
 @import 'neat';
 @import 'base/base';
+
+.container {
+  width: 75%;
+  margin: 2.0em auto;
+}
