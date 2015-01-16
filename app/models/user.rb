@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
   end
 
   def clear_password
-    self.update_attributes(password: nil, password_confirmation: nil)
+    update_attributes(password: nil, password_confirmation: nil)
   end
+
 
   def persistent
     persisted?
