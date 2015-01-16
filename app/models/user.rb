@@ -4,21 +4,18 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
   validates_length_of :password, :in => 6..50, :if => proc { self.password_confirmation.present? }
   before_save :encrypt_password
-  after_save :clear_password
 
   def encrypt_password
     if password.present?
       if password == password_confirmation
         self.salt = BCrypt::Engine.generate_salt
         self.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
+        self.password = nil
+        self.password_confirmation = nil
       else
         raise "Password is not valid or does not match confirmation"
       end
     end
-  end
-
-  def clear_password
-    update_attributes(password: nil, password_confirmation: nil)
   end
 
 
