@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
   def encrypt_password
     if password.present?
       if password == password_confirmation
-        self.salt = BCrypt::Engine.generate_salt
-        self.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
-        self.password = nil
-        self.password_confirmation = nil
+        password_salt = BCrypt::Engine.generate_salt
+        self.update_attributes(
+            salt: password_salt,
+            encrypted_password: BCrypt::Engine.hash_secret(password, password_salt),
+            password: nil,
+            password_confirmation: nil
+          )
       else
         raise "Password is not valid or does not match confirmation"
       end
