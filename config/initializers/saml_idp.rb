@@ -114,10 +114,10 @@ SamlIdp.configure do |config|
     "https://save-ferris-dev.18f.us/users/auth/saml" => {
       acs_url: "https://save-ferris-dev.18f.us/users/auth/saml/callback",
       metadata_url: "https://save-ferris-dev.18f.us/users/auth/saml/metadata",
-      cert: Rails.application.secrets.saml_cert # ,
+      cert: Rails.application.secrets.saml_cert,
       # block_encryption: 'aes256-cbc',
       # key_transport: 'rsa-oaep-mgf1p',
-      # fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
+      fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
     }
   }
 
