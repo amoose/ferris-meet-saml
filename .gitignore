@@ -1,3 +1,4 @@
+/config/secrets.yml
 !.keep
 *.DS_Store
 *.swo

@@ -38,44 +38,6 @@ SamlIdp.configure do |config|
   # config.signature_alg = 'rsa-sha256'
   # config.digest_alg = 'sha256'
   
-  # Principal is passed in when you `encode_response`
-  #
-  # config.name_id_formats = {
-  #     email_address: -> (principal) { principal.email },
-  #     transient: -> (principal) { principal.id },
-  #     persistent: -> (p) { p.id }
-  #   }
-  #   OR
-  #
-  #   {
-  #     "1.1" => {
-  #       email_address: -> (principal) { principal.email_address },
-  #     },
-  #     "2.0" => {
-  #       transient: -> (principal) { principal.email_address },
-  #       persistent: -> (p) { p.id },
-  #     },
-  #   }
-
-  # config.attributes # =>
-  #   {
-  #     <friendly_name> => {                                                  # required (ex "eduPersonAffiliation")
-  #       "name" => <attrname>                                                # required (ex "urn:oid:1.3.6.1.4.1.5923.1.1.1.1")
-  #       "name_format" => "urn:oasis:names:tc:SAML:2.0:attrname-format:uri", # not required
-  #       "getter" => ->(principal) {                                         # not required
-  #         principal.get_eduPersonAffiliation                                # If no "getter" defined, will try
-  #       }                                                                   # `principal.eduPersonAffiliation`, or no values will
-  #    }                                                                      # be output
-  #
-  ## EXAMPLE ##
-  # config.attributes = {
-  #   GivenName: {
-  #     getter: :first_name,
-  #   },
-  #   SurName: {
-  #     getter: :last_name,
-  #   },
-  # }
   config.attributes = {
     :emailAddress => {
       :getter => :email
@@ -106,10 +68,12 @@ SamlIdp.configure do |config|
     "http://localhost:3000/users/auth/saml" => {
       acs_url: "http://localhost:3000/users/auth/saml/callback",
       metadata_url: "http://localhost:3000/users/auth/saml/metadata",
-      cert: Rails.application.secrets.saml_cert,
+      cert: Rails.application.secrets.saml_client_cert,
       # block_encryption: 'aes256-cbc',
       # key_transport: 'rsa-oaep-mgf1p',
-      fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
+      # block_encryption: 'aes256-cbc',
+      # key_transport: 'rsa-oaep-mgf1p',
+      # fingerprint: fingerprint_cert(Rails.application.secrets.saml_cert)
     },
     "https://save-ferris-dev.18f.us/users/auth/saml" => {
       acs_url: "https://save-ferris-dev.18f.us/users/auth/saml/callback",
